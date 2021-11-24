@@ -1,0 +1,42 @@
+﻿// ------------------------------------------------
+// Copyright (c) MumsWhoCode. All rights reserved.
+// ------------------------------------------------
+
+using Example.ConsoleApp.Models.Samples;
+using FluentAssertions;
+using Force.DeepCloner;
+using Moq;
+using Xunit;
+
+namespace Example.Tests.Unit.Services.Foundations.Samples
+{
+    public partial class SampleServiceTests
+    {
+        [Fact]
+        public void ShouldAddSample()
+        {
+            // given
+            Sample randomSample = CreateRandomSample();
+            Sample inputSample = randomSample;
+            Sample storedSample = inputSample;
+            Sample expectedSample = storedSample.DeepClone();
+
+            this.storageBrokerMock.Setup(broker =>
+                broker.InsertSample(inputSample))
+                    .Returns(storedSample);
+
+            // when
+            Sample actualSample = this.sampleService.AddSample(inputSample);
+
+            // then
+            actualSample.Should().BeEquivalentTo(expectedSample);
+
+            this.storageBrokerMock.Verify(broker =>
+                broker.InsertSample(inputSample),
+                    Times.Once);
+
+            this.storageBrokerMock.VerifyNoOtherCalls();
+            this.loggingBrokerMock.VerifyNoOtherCalls();
+        }
+    }
+}
