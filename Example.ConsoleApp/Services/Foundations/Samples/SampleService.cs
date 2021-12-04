@@ -16,6 +16,7 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
             this.storageBroker = storageBroker;
 
         public Sample AddSample(Sample sample) =>
-            throw new NotImplementedException();
+
+            this.storageBroker.InsertSample(sample);
     }
 }

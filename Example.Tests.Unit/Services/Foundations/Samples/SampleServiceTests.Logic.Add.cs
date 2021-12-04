@@ -4,6 +4,7 @@
 
 using Example.ConsoleApp.Models.Samples;
 using FluentAssertions;
+using Force.DeepCloner;
 using Moq;
 using Xunit;
 
@@ -18,7 +19,7 @@ namespace Example.Tests.Unit.Services.Foundations.Samples
             Sample randomSample = CreateRandomSample();
             Sample inputSample = randomSample;
             Sample persistedSample = inputSample;
-            Sample expectedSample = persistedSample;
+            Sample expectedSample = persistedSample.DeepClone();
 
             this.storageBrokerMock.Setup(broker =>
                 broker.InsertSample(inputSample))
