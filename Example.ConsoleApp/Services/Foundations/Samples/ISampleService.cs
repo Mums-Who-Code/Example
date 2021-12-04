@@ -4,10 +4,10 @@
 
 using Example.ConsoleApp.Models.Samples;
 
-namespace Example.ConsoleApp.Brokers.Storages
+namespace Example.ConsoleApp.Services.Foundations.Samples
 {
-    public partial interface IStorageBroker
+    public interface ISampleService
     {
-        Sample InsertSample(Sample sample);
+        Sample AddSample(Sample sample);
     }
 }
