@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Example.ConsoleApp.Brokers.Loggings
 {
-    internal class LoggingBroker : ILoggingBroker
+    public class LoggingBroker : ILoggingBroker
     {
         public ILogger logger { get; set; }
 
