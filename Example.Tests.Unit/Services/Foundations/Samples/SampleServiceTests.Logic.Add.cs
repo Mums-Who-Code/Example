@@ -36,6 +36,7 @@ namespace Example.Tests.Unit.Services.Foundations.Samples
                     Times.Once);
 
             this.storageBrokerMock.VerifyNoOtherCalls();
+            this.loggingBrokerMock.VerifyNoOtherCalls();
         }
     }
 }
