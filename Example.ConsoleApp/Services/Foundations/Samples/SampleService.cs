@@ -8,7 +8,7 @@ using Example.ConsoleApp.Models.Samples;
 
 namespace Example.ConsoleApp.Services.Foundations.Samples
 {
-    public class SampleService : ISampleService
+    public partial class SampleService : ISampleService
     {
         private readonly IStorageBroker storageBroker;
         private readonly ILoggingBroker loggingBroker;
@@ -22,7 +22,11 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
         }
 
         public Sample AddSample(Sample sample) =>
+        TryCatch(() =>
+        {
+            ValidateSample(sample);
 
-            this.storageBroker.InsertSample(sample);
+            return this.storageBroker.InsertSample(sample);
+        });
     }
 }
