@@ -3,7 +3,6 @@
 // ------------------------------------------------
 
 using System;
-using System.Threading.Tasks;
 using Example.ConsoleApp.Models.Samples;
 using Example.ConsoleApp.Models.Samples.Exceptions;
 using Moq;
@@ -65,7 +64,8 @@ namespace Example.Tests.Unit.Services.Foundations.Samples
                 key: nameof(Sample.Text),
                 values: "Text is required.");
 
-            var expectedSampleValidationException = new SampleValidationException(invalidSampleException);
+            var expectedSampleValidationException =
+                new SampleValidationException(invalidSampleException);
 
             // when
             Action addSampleAction = () => this.sampleService.AddSample(invalidSample);

@@ -22,6 +22,10 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
             {
                 throw CreateAndLogValidationException(nullSampleException);
             }
+            catch (InvalidSampleException invalidSampleException)
+            {
+                throw CreateAndLogValidationException(invalidSampleException);
+            }
         }
 
         private SampleValidationException CreateAndLogValidationException(Xeption exception)
