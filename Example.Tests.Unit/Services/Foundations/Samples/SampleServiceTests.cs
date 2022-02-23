@@ -35,7 +35,7 @@ namespace Example.Tests.Unit.Services.Foundations.Samples
             return actualException =>
                 actualException.Message == expectedException.Message
                 && actualException.InnerException.Message == expectedException.InnerException.Message
-                && (actualException.InnerException as Xeption).Data == expectedException.InnerException.Data;
+                && (actualException.InnerException as Xeption).DataEquals(expectedException.InnerException.Data);
         }
 
         private static Sample CreateRandomSample() =>

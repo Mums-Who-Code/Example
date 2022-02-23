@@ -14,7 +14,7 @@ namespace Example.Tests.Unit.Services.Foundations.Samples
     public partial class SampleServiceTests
     {
         [Fact]
-        public async Task ShouldThrowValidationExceptionOnAddIfSampleIsNullAndLogIt()
+        public void ShouldThrowValidationExceptionOnAddIfSampleIsNullAndLogIt()
         {
             // given
             Sample nullSample = null;
@@ -46,7 +46,7 @@ namespace Example.Tests.Unit.Services.Foundations.Samples
         [InlineData(null)]
         [InlineData("")]
         [InlineData("   ")]
-        public async Task ShouldThrowValidationExceptionOnAddIfSampleIsInvalidAndLogIt(
+        public void ShouldThrowValidationExceptionOnAddIfSampleIsInvalidAndLogIt(
             string invalidText)
         {
             // given
