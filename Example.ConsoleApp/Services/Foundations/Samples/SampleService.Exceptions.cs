@@ -2,6 +2,7 @@
 // Copyright (c) MumsWhoCode. All rights reserved.
 // ------------------------------------------------
 
+using System;
 using Example.ConsoleApp.Models.Samples;
 using Example.ConsoleApp.Models.Samples.Exceptions;
 using Xeptions;
@@ -26,6 +27,13 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
             {
                 throw CreateAndLogValidationException(invalidSampleException);
             }
+            catch (Exception exception)
+            {
+                var failedSampleServiceException =
+                    new FailedSampleServiceException(exception);
+
+                throw CreateAndLogServiceException(failedSampleServiceException);
+            }
         }
 
         private SampleValidationException CreateAndLogValidationException(Xeption exception)
@@ -33,7 +41,15 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
             var sampleValidationException = new SampleValidationException(exception);
             this.loggingBroker.LogError(sampleValidationException);
 
-            throw sampleValidationException;
+            return sampleValidationException;
+        }
+
+        private SampleServiceException CreateAndLogServiceException(Xeption exception)
+        {
+            var sampleServiceException = new SampleServiceException(exception);
+            this.loggingBroker.LogError(sampleServiceException);
+
+            return sampleServiceException;
         }
     }
 }
