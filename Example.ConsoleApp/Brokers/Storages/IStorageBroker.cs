@@ -4,7 +4,7 @@
 
 namespace Example.ConsoleApp.Brokers.Storages
 {
-    internal partial interface IStorageBroker
+    public partial interface IStorageBroker
     {
     }
 }

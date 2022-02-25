@@ -6,7 +6,7 @@ using System;
 
 namespace Example.ConsoleApp.Brokers.Loggings
 {
-    internal interface ILoggingBroker
+    public interface ILoggingBroker
     {
         void LogError(Exception exception);
     }
