@@ -2,6 +2,7 @@
 // Copyright (c) MumsWhoCode. All rights reserved.
 // ------------------------------------------------
 
+using System.Collections.Generic;
 using Example.ConsoleApp.Brokers.Loggings;
 using Example.ConsoleApp.Brokers.Storages;
 using Example.ConsoleApp.Models.Samples;
@@ -28,5 +29,8 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
 
             return this.storageBroker.InsertSample(sample);
         });
+
+        public List<Sample> RetrieveAllSamples() =>
+            throw new System.NotImplementedException();
     }
 }

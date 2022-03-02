@@ -3,6 +3,8 @@
 // ------------------------------------------------
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using Example.ConsoleApp.Brokers.Loggings;
 using Example.ConsoleApp.Brokers.Storages;
@@ -37,6 +39,12 @@ namespace Example.Tests.Unit.Services.Foundations.Samples
                 && actualException.InnerException.Message == expectedException.InnerException.Message
                 && (actualException.InnerException as Xeption).DataEquals(expectedException.InnerException.Data);
         }
+
+        private static int GetRandomNumber() =>
+            new IntRange(min: 2, max: 10).GetValue();
+
+        private static List<Sample> CreateRandomSamples() =>
+            CreateSampleFiller().Create(count: GetRandomNumber()).ToList();
 
         private static Sample CreateRandomSample() =>
             CreateSampleFiller().Create();

@@ -18,6 +18,6 @@ namespace Example.ConsoleApp.Brokers.Storages
             return sample;
         }
 
-        public List<Sample> SelectAllSamples() => Samples;        
+        public List<Sample> SelectAllSamples() => Samples;
     }
 }
