@@ -3,6 +3,7 @@
 // ------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using Example.ConsoleApp.Models.Samples;
 using Example.ConsoleApp.Models.Samples.Exceptions;
 using Xeptions;
@@ -12,6 +13,7 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
     public partial class SampleService
     {
         private delegate Sample ReturningSampleFunction();
+        private delegate List<Sample> ReturningSamplesFunction();
 
         private Sample TryCatch(ReturningSampleFunction returningSampleFunction)
         {
@@ -33,6 +35,22 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
                     new FailedSampleServiceException(exception);
 
                 throw CreateAndLogServiceException(failedSampleServiceException);
+            }
+        }
+
+        private List<Sample> TryCatch(ReturningSamplesFunction returningSamplesFunction)
+        {
+            try
+            {
+                return returningSamplesFunction();
+            }
+            catch (Exception exception)
+            {
+                var faileSampleServiceException =
+                    new FailedSampleServiceException(exception);
+
+                throw CreateAndLogServiceException(
+                    faileSampleServiceException);
             }
         }
 
