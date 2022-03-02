@@ -31,6 +31,6 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
         });
 
         public List<Sample> RetrieveAllSamples() =>
-            throw new System.NotImplementedException();
+            this.storageBroker.SelectAllSamples();
     }
 }
