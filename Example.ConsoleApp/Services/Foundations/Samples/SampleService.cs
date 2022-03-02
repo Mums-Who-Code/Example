@@ -31,6 +31,9 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
         });
 
         public List<Sample> RetrieveAllSamples() =>
-            this.storageBroker.SelectAllSamples();
+        TryCatch(() =>
+        {
+            return this.storageBroker.SelectAllSamples();
+        });
     }
 }
