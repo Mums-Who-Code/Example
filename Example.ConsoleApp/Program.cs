@@ -2,6 +2,7 @@
 // Copyright (c) MumsWhoCode. All rights reserved.
 // ------------------------------------------------
 
+using System.Collections.Generic;
 using Example.ConsoleApp.Brokers.Loggings;
 using Example.ConsoleApp.Brokers.Storages;
 using Example.ConsoleApp.Models.Samples;
@@ -27,6 +28,15 @@ namespace Example.ConsoleApp
             };
 
             sampleService.AddSample(inputSample);
+
+            inputSample = new Sample
+            {
+                Id = 244523,
+                Text = "Test Record"
+            };
+
+            sampleService.AddSample(inputSample);
+            List<Sample> storedSamples = sampleService.RetrieveAllSamples();
         }
     }
 }
