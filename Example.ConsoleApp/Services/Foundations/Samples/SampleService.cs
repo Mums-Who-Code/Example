@@ -37,6 +37,6 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
         });
 
         public Sample RetrieveSampleById(int id) =>
-            throw new System.NotImplementedException();
+            this.storageBroker.SelectSampleById(id);
     }
 }
