@@ -37,6 +37,11 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
         });
 
         public Sample RetrieveSampleById(int id) =>
-            this.storageBroker.SelectSampleById(id);
+        TryCatch(() =>
+        {
+            ValidateInput(id);
+
+            return this.storageBroker.SelectSampleById(id);
+        });
     }
 }

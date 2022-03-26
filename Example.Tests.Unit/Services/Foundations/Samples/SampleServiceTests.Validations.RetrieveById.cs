@@ -21,7 +21,7 @@ namespace Example.Tests.Unit.Services.Foundations.Samples
 
             invalidSampleException.AddData(
                 key: nameof(Sample.Id),
-                values: "Id is required");
+                values: "Id is required.");
 
             var expectedSampleValidationException =
                 new SampleValidationException(invalidSampleException);

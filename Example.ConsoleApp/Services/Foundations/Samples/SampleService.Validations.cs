@@ -19,6 +19,9 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
                 (Rule: IsInvalid(sample.Text), Parameter: nameof(Sample.Text)));
         }
 
+        private static void ValidateInput(int id) =>
+            Validate((Rule: IsInvalid(id), Parameter: nameof(Sample.Id)));
+
         private static dynamic IsInvalid(int id) => new
         {
             Condition = id == default,
