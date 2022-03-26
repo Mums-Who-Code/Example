@@ -19,5 +19,8 @@ namespace Example.ConsoleApp.Brokers.Storages
         }
 
         public List<Sample> SelectAllSamples() => Samples;
+
+        public Sample SelectSampleById(int id) =>
+            Samples.Find(sample => sample.Id == id);
     }
 }
