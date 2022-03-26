@@ -16,7 +16,7 @@ namespace Example.Tests.Unit.Services.Foundations.Samples
         public void ShouldThrowValidationExceptionOnRetrieveByIdIfIdIsInvalidAndLogIt()
         {
             // given
-            var invalidSample = new Sample();
+            int invalidId = default;
             var invalidSampleException = new InvalidSampleException();
 
             invalidSampleException.AddData(
@@ -28,7 +28,7 @@ namespace Example.Tests.Unit.Services.Foundations.Samples
 
             // when
             Action retrieveSampleByIdAction = () =>
-                this.sampleService.RetrieveSampleById(invalidSample.Id);
+                this.sampleService.RetrieveSampleById(invalidId);
 
             // then
             Assert.Throws<SampleValidationException>(retrieveSampleByIdAction);
