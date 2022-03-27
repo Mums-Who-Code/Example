@@ -12,5 +12,6 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
         Sample AddSample(Sample sample);
         List<Sample> RetrieveAllSamples();
         Sample RetrieveSampleById(int id);
+        Sample ModifySample(Sample sample);
     }
 }
