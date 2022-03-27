@@ -53,6 +53,6 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
         });
 
         public Sample RemoveSample(Sample sample) =>
-            throw new System.NotImplementedException();
+            this.storageBroker.DeleteSample(sample);
     }
 }
