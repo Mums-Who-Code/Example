@@ -47,7 +47,7 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
         public Sample ModifySample(Sample sample) =>
         TryCatch(() =>
         {
-            ValidateSampleIsNotNull(sample);
+            ValidateSample(sample);
 
             return this.storageBroker.UpdateSample(sample);
         });
