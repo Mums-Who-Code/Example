@@ -38,6 +38,14 @@ namespace Example.ConsoleApp
             sampleService.AddSample(inputSample);
             List<Sample> storedSamples = sampleService.RetrieveAllSamples();
             Sample returningSample = sampleService.RetrieveSampleById(24);
+
+            inputSample = new Sample
+            {
+                Id = 24,
+                Text = "No previous sample"
+            };
+
+            Sample modifiedSample = sampleService.ModifySample(inputSample);
         }
     }
 }
