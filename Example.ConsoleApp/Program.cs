@@ -46,6 +46,14 @@ namespace Example.ConsoleApp
             };
 
             Sample modifiedSample = sampleService.ModifySample(inputSample);
+
+            inputSample = new Sample
+            {
+                Id = 0,
+                Text = "Record to be deleted"
+            };
+
+            Sample deletedSample = sampleService.RemoveSample(inputSample);
         }
     }
 }
