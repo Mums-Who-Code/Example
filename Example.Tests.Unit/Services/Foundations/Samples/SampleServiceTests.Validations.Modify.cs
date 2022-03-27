@@ -40,5 +40,50 @@ namespace Example.Tests.Unit.Services.Foundations.Samples
             this.loggingBrokerMock.VerifyNoOtherCalls();
             this.storageBrokerMock.VerifyNoOtherCalls();
         }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData(" ")]
+        public void ShouldThrowValidationExceptionOnModifyIfSampleIsInvalidAndLogIt(
+            string invalidText)
+        {
+            // given
+            var invalidSample = new Sample
+            {
+                Text = invalidText
+            };
+
+            var invalidSampleException = new InvalidSampleException();
+
+            invalidSampleException.AddData(
+                key: nameof(Sample.Id),
+                values: "Id is required.");
+
+            invalidSampleException.AddData(
+                key: nameof(Sample.Text),
+                values: "Text is required.");
+
+            var expectedSampleValidationException =
+                new SampleValidationException(invalidSampleException);
+
+            // when
+            Action modifySampleAction = () => this.sampleService.ModifySample(invalidSample);
+
+            // then
+            Assert.Throws<SampleValidationException>(modifySampleAction);
+
+            this.loggingBrokerMock.Verify(broker =>
+                broker.LogError(It.Is(SameExceptionAs(
+                    expectedSampleValidationException))),
+                        Times.Once);
+
+            this.storageBrokerMock.Verify(broker =>
+                broker.UpdateSample(It.IsAny<Sample>()),
+                    Times.Never);
+
+            this.loggingBrokerMock.VerifyNoOtherCalls();
+            this.storageBrokerMock.VerifyNoOtherCalls();
+        }
     }
 }
