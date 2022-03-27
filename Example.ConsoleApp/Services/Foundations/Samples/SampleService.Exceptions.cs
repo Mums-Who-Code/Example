@@ -29,6 +29,14 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
             {
                 throw CreateAndLogValidationException(invalidSampleException);
             }
+            catch (ArgumentNullException argumentNullException)
+            {
+                var nullArgumentSampleException =
+                    new NullArgumentSampleException(argumentNullException);
+
+                throw CreateAndLogDependencyValidationException(
+                    nullArgumentSampleException);
+            }
             catch (Exception exception)
             {
                 var failedSampleServiceException =
@@ -60,6 +68,14 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
             this.loggingBroker.LogError(sampleValidationException);
 
             return sampleValidationException;
+        }
+
+        private SampleDependencyValidationException CreateAndLogDependencyValidationException(Xeption exception)
+        {
+            var sampleDependencyValidationException = new SampleDependencyValidationException(exception);
+            this.loggingBroker.LogError(sampleDependencyValidationException);
+
+            return sampleDependencyValidationException;
         }
 
         private SampleServiceException CreateAndLogServiceException(Xeption exception)
