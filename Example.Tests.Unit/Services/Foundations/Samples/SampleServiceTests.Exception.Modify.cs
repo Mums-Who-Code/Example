@@ -48,5 +48,42 @@ namespace Example.Tests.Unit.Services.Foundations.Samples
             this.loggingBrokerMock.VerifyNoOtherCalls();
 
         }
+
+        [Fact]
+        public void ShouldThrowServiceExceptionOnModifyIfServiceErrorOccursAndLogIt()
+        {
+            // given
+            Sample someSample = CreateRandomSample();
+            var serviceException = new Exception();
+
+            var failedSampleServiceException =
+                new FailedSampleServiceException(serviceException);
+
+            var expectedSampleServiceException =
+                new SampleServiceException(
+                    failedSampleServiceException);
+
+            this.storageBrokerMock.Setup(broker =>
+                broker.UpdateSample(It.IsAny<Sample>()))
+                    .Throws(serviceException);
+
+            // when
+            Action modifySampleAction = () => this.sampleService.ModifySample(someSample);
+
+            // then
+            Assert.Throws<SampleServiceException>(modifySampleAction);
+
+            this.storageBrokerMock.Verify(broker =>
+                broker.UpdateSample(It.IsAny<Sample>()),
+                    Times.Once);
+
+            this.loggingBrokerMock.Verify(broker =>
+                broker.LogError(It.Is(SameExceptionAs(
+                    expectedSampleServiceException))),
+                        Times.Once);
+
+            this.storageBrokerMock.VerifyNoOtherCalls();
+            this.loggingBrokerMock.VerifyNoOtherCalls();
+        }
     }
 }
