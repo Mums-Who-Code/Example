@@ -12,5 +12,6 @@ namespace Example.ConsoleApp.Brokers.Storages
         Sample InsertSample(Sample sample);
         List<Sample> SelectAllSamples();
         Sample SelectSampleById(int id);
+        Sample UpdateSample(Sample inputSample);
     }
 }
