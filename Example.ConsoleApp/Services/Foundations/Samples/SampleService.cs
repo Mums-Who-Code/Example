@@ -45,6 +45,6 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
         });
 
         public Sample ModifySample(Sample sample) =>
-            throw new System.NotImplementedException();
+            this.storageBroker.UpdateSample(sample);
     }
 }
