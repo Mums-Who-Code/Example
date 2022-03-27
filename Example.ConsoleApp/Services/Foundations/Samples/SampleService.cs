@@ -58,6 +58,6 @@ namespace Example.ConsoleApp.Services.Foundations.Samples
             ValidateSampleIsNotNull(sample);
 
             return this.storageBroker.DeleteSample(sample);
-        });            
+        });
     }
 }
