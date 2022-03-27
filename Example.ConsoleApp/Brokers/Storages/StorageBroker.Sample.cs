@@ -30,5 +30,12 @@ namespace Example.ConsoleApp.Brokers.Storages
 
             return inputSample;
         }
+
+        public Sample DeleteSample(Sample sample)
+        {
+            Samples.Remove(sample);
+
+            return sample;
+        }
     }
 }

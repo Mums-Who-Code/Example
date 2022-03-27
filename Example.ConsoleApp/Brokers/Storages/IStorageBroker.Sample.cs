@@ -13,5 +13,6 @@ namespace Example.ConsoleApp.Brokers.Storages
         List<Sample> SelectAllSamples();
         Sample SelectSampleById(int id);
         Sample UpdateSample(Sample inputSample);
+        Sample DeleteSample(Sample sample);
     }
 }
