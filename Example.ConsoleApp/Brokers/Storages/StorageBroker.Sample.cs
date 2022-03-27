@@ -22,5 +22,13 @@ namespace Example.ConsoleApp.Brokers.Storages
 
         public Sample SelectSampleById(int id) =>
             Samples.Find(sample => sample.Id == id);
+
+        public Sample UpdateSample(Sample inputSample)
+        {
+            Samples.RemoveAll(sample => sample.Id == inputSample.Id);
+            Samples.Add(inputSample);
+
+            return inputSample;
+        }
     }
 }
