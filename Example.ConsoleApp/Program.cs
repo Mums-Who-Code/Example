@@ -37,6 +37,7 @@ namespace Example.ConsoleApp
 
             sampleService.AddSample(inputSample);
             List<Sample> storedSamples = sampleService.RetrieveAllSamples();
+            Sample returningSample = sampleService.RetrieveSampleById(24) ;
         }
     }
 }
